@@ -70,7 +70,7 @@ Widget _returnHistoryContainer(Disease disease, BuildContext context,
           decoration: BoxDecoration(
               image: DecorationImage(
                   image: Image.file(
-                File(disease.imagePath),
+                File(disease.imagePath ?? ''),
                 fit: BoxFit.cover,
               ).image),
               boxShadow: [
@@ -94,7 +94,7 @@ Widget _returnHistoryContainer(Disease disease, BuildContext context,
                       fontFamily: 'SFBold',
                     )),
                 Text(
-                    'Date: ${disease.dateTime.day}/${disease.dateTime.month}/${disease.dateTime.year}',
+                    'Date: ${disease.dateTime!.day}/${disease.dateTime!.month}/${disease.dateTime!.year}',
                     style: TextStyle(
                       color: kWhite,
                       fontSize: (0.066 * size.height * 0.3),

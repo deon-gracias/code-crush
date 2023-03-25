@@ -41,7 +41,7 @@ class Suggestions extends StatelessWidget {
                     child: Center(
                         child: PlantImage(
                   size: size,
-                  imageFile: File(_disease.imagePath),
+                  imageFile: File(_disease.imagePath ?? ""),
                 ))),
                 Divider(
                   thickness: (0.0066 * size.height),
@@ -58,12 +58,12 @@ class Suggestions extends StatelessWidget {
                       ),
                       TextProperty(
                         title: AppLocalizations.of(context)!.diseaseCause,
-                        value: _disease.possibleCauses,
+                        value: _disease.possibleCauses ?? "No cause found",
                         height: size.height,
                       ),
                       TextProperty(
                         title: AppLocalizations.of(context)!.diseaseSolution,
-                        value: _disease.possibleSolution,
+                        value: _disease.possibleSolution ?? "No solution found",
                         height: size.height,
                       ),
                     ],

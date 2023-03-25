@@ -19,6 +19,7 @@ class DiseaseAdapter extends TypeAdapter<Disease> {
     return Disease(
       name: fields[0] as String,
       imagePath: fields[3] as String,
+      // context: context,
     )
       ..possibleCauses = fields[1] as String
       ..possibleSolution = fields[2] as String
