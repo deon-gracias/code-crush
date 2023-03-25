@@ -6,6 +6,7 @@ import axios from "axios";
 import styles from "../../../styles/Crop.module.css";
 import cropImgs from "../../../public/assets/crop_image.json";
 import LoadingIcon from "../../../components/LoadingIcon";
+import { db } from "../../../lib/firebase";
 
 const Crop = () => {
   const router = useRouter();
@@ -18,6 +19,20 @@ const Crop = () => {
       axios.get(`${process.env.api}/crops?name=${name}`).then((response) => {
         setCrop(response.data.crop);
       });
+    // if (name) {
+    //   const query = ref(db, "sensor");
+    //   return onValue(query, (snapshot) => {
+    //     const raw_data = snapshot.val();
+
+    //     if (snapshot.exists()) {
+    //       raw_data.forEach((key, index) => {
+    //         raw_data[index].N == name
+    //           ? setCrop(raw_data[index])
+    //           : console.log();
+    //       });
+    //     }
+    //   });
+    // }
   }, [name]);
 
   // console.log(cropImgs[name]);
