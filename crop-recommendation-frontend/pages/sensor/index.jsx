@@ -5,6 +5,11 @@ import { useState } from "react";
 import { db } from "../../lib/firebase";
 import styles from "../../styles/Sensors.module.css";
 import { onValue, ref } from "firebase/database";
+import { CategoryScale } from "chart.js";
+import Chart from "chart.js/auto";
+import { BarChart } from "../../components/BarChart";
+
+Chart.register(CategoryScale);
 export default function Sensor() {
   const [sensorData, setSensorData] = useState([]);
 
@@ -23,20 +28,66 @@ export default function Sensor() {
     const query = ref(db, "sensor");
     return onValue(query, (snapshot) => {
       const raw_data = snapshot.val();
-
+      let allService = raw_data.map((item, indx) => indx);
       if (snapshot.exists()) {
         // raw_data.forEach((key, index) => {
         //   raw_data[index].N == name ? setCrop(raw_data[index]) : console.log();
         // });
+        var k = [];
+        var l = [];
+        var n = [];
+
+        setChartData({
+          labels: allService,
+          datasets: [
+            {
+              label: "N",
+              data: raw_data.map((item, index) => {
+                return raw_data[index]["N"];
+              }),
+
+              borderColor: "rgb(255, 13, 32)",
+              backgroundColor: "rgb(255, 13, 32)",
+              borderWidth: 2,
+            },
+            {
+              label: "K",
+              data: raw_data.map((item, index) => {
+                return raw_data[index]["K"];
+              }),
+
+              borderColor: "rgb(255, 99, 132)",
+              backgroundColor: "rgba(255, 99, 132, 0.5)",
+              borderWidth: 2,
+            },
+            {
+              label: "P",
+              data: raw_data.map((item, index) => {
+                return raw_data[index]["P"];
+              }),
+              borderColor: "rgb(255, 99, 12)",
+              backgroundColor: "rgb(255, 99, 12)",
+              borderWidth: 2,
+            },
+          ],
+        });
         setSensorData(raw_data);
       }
-      console.log(raw_data);
+      console.log(
+        raw_data.map((item, index) => {
+          return raw_data[index]["K"];
+        })
+      );
     });
   }
-
+  const [chartData, setChartData] = React.useState({
+    labels: [],
+    datasets: [],
+  });
   return (
     <>
       {console.log(sensorData)}
+      <BarChart chartData={chartData} />
       <div className={styles.container}>
         <Head>
           <title>Sensor Data</title>
@@ -69,7 +120,7 @@ export default function Sensor() {
               <tbody>
                 {sensorData.map((sensor, rowIndex) => (
                   <tr key={rowIndex}>
-                    {console.log(Object.keys(sensor))}
+                    {/* {console.log(Object.keys(sensor))} */}
                     <td>{sensor.id ?? "-"}</td>
                     <td>{sensor.N ?? "-"}</td>
                     <td>{sensor.P ?? "-"}</td>

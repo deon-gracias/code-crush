@@ -2,40 +2,40 @@
   "sensor": [
     {
       "id": "1",
-      "N": "sensor2",
-      "P": "humidity",
+      "N": 77,
+      "P": 53,
       "K": 45.5,
       "moisture": "33",
       "timestamp": 1234567890
     },
     {
       "id": "2",
-      "N": "sensor2",
-      "P": "humidity",
+      "N": 21,
+      "P": 20,
       "K": 45.5,
       "moisture": "33",
       "timestamp": 1234567890
     },
     {
       "id": "3",
-      "N": "sensor2",
-      "P": "humidity",
+      "N": 62,
+      "P": 32,
       "K": 45.5,
       "moisture": "33",
       "timestamp": 1234567890
     },
     {
       "id": "4",
-      "N": "sensor2",
-      "P": "humidity",
+      "N": 11,
+      "P": 21,
       "K": 45.5,
       "moisture": "33",
       "timestamp": 1234567890
     },
     {
       "id": "4",
-      "N": "sensor2",
-      "P": "humidity",
+      "N": 8,
+      "P": 4,
       "K": 45.5,
       "moisture": "33",
       "timestamp": 1234567890
