@@ -9,11 +9,6 @@ A Flutter installation is required to run this project.
 To install Flutter, visit the official installation [documentation](https://docs.flutter.dev/get-started/install).
 Set up an editor of choice as specified [here](https://docs.flutter.dev/get-started/editor).
 
-Download the project.
-
-```bash
-git clone https://github.com/root458/Plant-Disease-Detector.git
-```
 
 Run the below command inside the project directory to install necessary packages.
 ```bash
