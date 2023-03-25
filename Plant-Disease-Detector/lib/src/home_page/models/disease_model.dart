@@ -1,7 +1,9 @@
+import 'package:flutter/cupertino.dart';
 import 'package:hive/hive.dart';
-
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 part 'disease_model.g.dart';
 
+late BuildContext context;
 @HiveType(typeId: 0)
 class Disease extends HiveObject {
   @HiveField(0)
@@ -25,33 +27,33 @@ class Disease extends HiveObject {
     switch (name) {
       case "Pepper Bell Bacterial Spot":
         possibleCauses =
-            "Caused by Xanthomonas bacteria, spread through splashing rain.";
+            AppLocalizations.of(context)!.case1P;
         possibleSolution =
-            "Spray early and often. Use copper and Mancozeb sprays.";
+            AppLocalizations.of(context)!.case1S;
         break;
 
       case "Pepper Bell Healthy":
-        possibleCauses = "Crops are okay.";
-        possibleSolution = "N/A";
+        possibleCauses = AppLocalizations.of(context)!.okay;
+        possibleSolution = AppLocalizations.of(context)!.na;
         break;
 
       case "Potato Early Blight":
         possibleCauses =
-            "The fungus Alternaria solani, high humidity and long periods of leaf wetness.";
+           AppLocalizations.of(context)!.case2P;
         possibleSolution =
-            "Maintaining optimum growing conditions: proper fertilization, irrigation, and pests management.";
+            AppLocalizations.of(context)!.case2S;
         break;
 
       case "Potato Healthy":
-        possibleCauses = "Crops are okay.";
-        possibleSolution = "N/A";
+        possibleCauses = AppLocalizations.of(context)!.okay;
+        possibleSolution = AppLocalizations.of(context)!.na;
         break;
 
       case "Potato Late Blight":
         possibleCauses =
-            "Occurs in humid regions with temperatures ranging between 4 and 29 °C.";
+            AppLocalizations.of(context)!.case6P;
         possibleSolution =
-            "Eliminating cull piles and volunteer potatoes, using proper harvesting and storage practices, and applying fungicides when necessary.";
+            AppLocalizations.of(context)!.case6S;
         break;
 
       case "Tomato Bacterial Spot":
@@ -63,19 +65,19 @@ class Disease extends HiveObject {
 
       case "Tomato Early Blight":
         possibleCauses =
-            "The fungus Alternaria solani, high humidity and long periods of leaf wetness.";
+            AppLocalizations.of(context)!.case7P;
         possibleSolution =
-            "Maintaining optimum growing conditions: proper fertilization, irrigation, and pests management.";
+            AppLocalizations.of(context)!.case7S;
         break;
 
       case "Tomato Healthy":
-        possibleCauses = "Crops are okay.";
-        possibleSolution = "N/A";
+        possibleCauses = AppLocalizations.of(context)!.okay;
+        possibleSolution = AppLocalizations.of(context)!.na;
         break;
 
       case "Tomato Late Blight":
-        possibleCauses = "Caused by the water mold Phytophthora infestans.";
-        possibleSolution = "Timely application of fungicide";
+        possibleCauses = AppLocalizations.of(context)!.case9P;
+        possibleSolution = AppLocalizations.of(context)!.case9S;
         break;
 
       case "Tomato Leaf Mold":

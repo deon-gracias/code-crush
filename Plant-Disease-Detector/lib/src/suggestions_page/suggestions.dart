@@ -7,6 +7,8 @@ import 'package:plant_disease_detector/src/home_page/models/disease_model.dart';
 import 'package:plant_disease_detector/src/suggestions_page/components/plant_image.dart';
 import 'package:plant_disease_detector/src/suggestions_page/components/text_property.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
 
 class Suggestions extends StatelessWidget {
   const Suggestions({Key? key}) : super(key: key);
@@ -50,17 +52,17 @@ class Suggestions extends StatelessWidget {
                   child: ListView(
                     children: [
                       TextProperty(
-                        title: 'Disease name',
+                        title: AppLocalizations.of(context)!.diseaseName,
                         value: _disease.name,
                         height: size.height,
                       ),
                       TextProperty(
-                        title: 'Possible causes',
+                        title: AppLocalizations.of(context)!.diseaseCause,
                         value: _disease.possibleCauses,
                         height: size.height,
                       ),
                       TextProperty(
-                        title: 'Possible solution',
+                        title: AppLocalizations.of(context)!.diseaseSolution,
                         value: _disease.possibleSolution,
                         height: size.height,
                       ),

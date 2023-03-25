@@ -91,7 +91,7 @@
   "@case7": {
     "description": "Tomato Early Blight"
   },
-  "case7P" :"The fungus Alternaria solani, high humidity and long periods of leaf wetness.",
+  "case7P": "The fungus Alternaria solani, high humidity and long periods of leaf wetness.",
   "@case7P": {
     "description": "The fungus Alternaria solani, high humidity and long periods of leaf wetness."
   },
@@ -114,5 +114,17 @@
   "case9S": "Timely application of fungicide",
   "@case9S": {
     "description": "Timely application of fungicide"
+  },
+  "diseaseName": "Disease Name",
+  "@diseaseName": {
+    "description": "Disease Name"
+  },
+  "diseaseCause": "Possible Cause",
+  "@diseaseCause": {
+    "description": "Possible Cause"
+  },
+  "diseaseSolution": "Possible Solution",
+  "@diseaseSolution": {
+    "description": "Possible Solution"
   }
 }
