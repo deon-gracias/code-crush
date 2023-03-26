@@ -7,6 +7,7 @@ import axios from "axios";
 import styles from "../styles/Home.module.css";
 import fields512 from "../public/fields-512x512.png";
 import { AccessPoint, Growth, Login, LivePhoto } from "tabler-icons-react";
+import ChatboT from "../components/ChatBot";
 
 const Home = () => {
   const [inputValues, setInputValues] = useState({
@@ -57,152 +58,155 @@ const Home = () => {
   };
 
   return (
-    <div className={styles.container}>
-      <Head>
-        <title>Crop Recommendation</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
+    <>
+      <div className={styles.container}>
+        <Head>
+          <title>Crop Recommendation</title>
+          <link rel="icon" href="/favicon.ico" />
+        </Head>
 
-      <main className={styles.main}>
-        <Image src={fields512} height={100} width={100} alt="Crop Image" />
-        <h1 className={styles.title}>Crop Recommendation</h1>
+        <main className={styles.main}>
+          <Image src={fields512} height={100} width={100} alt="Crop Image" />
+          <h1 className={styles.title}>Crop Recommendation</h1>
 
-        <div className={styles.formContainer}>
-          <form className={styles.form} method="post">
-            {/* Nitrogen */}
-            <label htmlFor="nitrogen-input">Nitrogen</label>
-            <input
-              id="nitrogen-input"
-              name="nitrogen"
-              className={styles.field}
-              type="number"
-              value={inputValues.nitrogen}
-              step={0.01}
-              onChange={onChangeHandler}
-              disabled={loading}
-              required
-            />
+          <div className={styles.formContainer}>
+            <form className={styles.form} method="post">
+              {/* Nitrogen */}
+              <label htmlFor="nitrogen-input">Nitrogen</label>
+              <input
+                id="nitrogen-input"
+                name="nitrogen"
+                className={styles.field}
+                type="number"
+                value={inputValues.nitrogen}
+                step={0.01}
+                onChange={onChangeHandler}
+                disabled={loading}
+                required
+              />
 
-            {/* Phosphorus */}
-            <label htmlFor="phosphorus-input">Phosphorus</label>
-            <input
-              id="phosphorus-input"
-              name="phosphorus"
-              className={styles.field}
-              type="number"
-              value={inputValues.phosphorus}
-              step={0.01}
-              onChange={onChangeHandler}
-              disabled={loading}
-              required
-            />
+              {/* Phosphorus */}
+              <label htmlFor="phosphorus-input">Phosphorus</label>
+              <input
+                id="phosphorus-input"
+                name="phosphorus"
+                className={styles.field}
+                type="number"
+                value={inputValues.phosphorus}
+                step={0.01}
+                onChange={onChangeHandler}
+                disabled={loading}
+                required
+              />
 
-            {/* Pottasium */}
-            <label htmlFor="pottasium-input">Pottasium</label>
-            <input
-              id="pottasium-input"
-              name="pottasium"
-              className={styles.field}
-              type="number"
-              value={inputValues.pottasium}
-              step={0.01}
-              onChange={onChangeHandler}
-              disabled={loading}
-              required
-            />
+              {/* Pottasium */}
+              <label htmlFor="pottasium-input">Pottasium</label>
+              <input
+                id="pottasium-input"
+                name="pottasium"
+                className={styles.field}
+                type="number"
+                value={inputValues.pottasium}
+                step={0.01}
+                onChange={onChangeHandler}
+                disabled={loading}
+                required
+              />
 
-            {/* Temperature */}
-            <label htmlFor="temperature-input">Temperature</label>
-            <input
-              id="temperature-input"
-              name="temperature"
-              className={styles.field}
-              type="number"
-              value={inputValues.temperature}
-              step={0.01}
-              onChange={onChangeHandler}
-              disabled={loading}
-              required
-            />
+              {/* Temperature */}
+              <label htmlFor="temperature-input">Temperature</label>
+              <input
+                id="temperature-input"
+                name="temperature"
+                className={styles.field}
+                type="number"
+                value={inputValues.temperature}
+                step={0.01}
+                onChange={onChangeHandler}
+                disabled={loading}
+                required
+              />
 
-            {/* Humidity */}
-            <label htmlFor="humidity-input">Humidity</label>
-            <input
-              id="humidity-input"
-              name="humidity"
-              className={styles.field}
-              type="number"
-              value={inputValues.humidity}
-              step={0.01}
-              onChange={onChangeHandler}
-              disabled={loading}
-              required
-            />
+              {/* Humidity */}
+              <label htmlFor="humidity-input">Humidity</label>
+              <input
+                id="humidity-input"
+                name="humidity"
+                className={styles.field}
+                type="number"
+                value={inputValues.humidity}
+                step={0.01}
+                onChange={onChangeHandler}
+                disabled={loading}
+                required
+              />
 
-            {/* pH */}
-            <label htmlFor="ph-input">pH</label>
-            <input
-              id="ph-input"
-              name="ph"
-              className={styles.field}
-              type="number"
-              min={3}
-              max={9}
-              value={inputValues.ph}
-              disabled={loading}
-              step={0.01}
-              onChange={onChangeHandler}
-              required
-            />
+              {/* pH */}
+              <label htmlFor="ph-input">pH</label>
+              <input
+                id="ph-input"
+                name="ph"
+                className={styles.field}
+                type="number"
+                min={3}
+                max={9}
+                value={inputValues.ph}
+                disabled={loading}
+                step={0.01}
+                onChange={onChangeHandler}
+                required
+              />
 
-            {/* Rainfall */}
-            <label htmlFor="rainfall-input">Rainfall (in mm)</label>
-            <input
-              id="rainfall-input"
-              name="rainfall"
-              className={styles.field}
-              type="number"
-              value={inputValues.rainfall}
-              disabled={loading}
-              step={0.01}
-              onChange={onChangeHandler}
-              required
-            />
+              {/* Rainfall */}
+              <label htmlFor="rainfall-input">Rainfall (in mm)</label>
+              <input
+                id="rainfall-input"
+                name="rainfall"
+                className={styles.field}
+                type="number"
+                value={inputValues.rainfall}
+                disabled={loading}
+                step={0.01}
+                onChange={onChangeHandler}
+                required
+              />
 
-            {/* Submit */}
-            <button
-              type="submit"
-              disabled={loading}
-              onClick={(e) => handleSubmit(e)}
-            >
-              {loading ? "Loading..." : "Submit"}
-            </button>
-          </form>
+              {/* Submit */}
+              <button
+                type="submit"
+                disabled={loading}
+                onClick={(e) => handleSubmit(e)}
+              >
+                {loading ? "Loading..." : "Submit"}
+              </button>
+            </form>
+          </div>
+        </main>
+        <div className={styles.tipContainer}>
+          <Link href="/sensor" passHref>
+            <div className={styles.tipBtn}>
+              <AccessPoint /> Sensor
+            </div>
+          </Link>
+          <Link href="/crops" passHref>
+            <div className={styles.tipBtn}>
+              <Growth /> Crops
+            </div>
+          </Link>
+          <Link href="/live" passHref>
+            <div className={styles.tipBtn}>
+              <LivePhoto /> Live
+            </div>
+          </Link>
+          <Link href="/login" passHref>
+            <div className={styles.tipBtn}>
+              <Login /> Login
+            </div>
+          </Link>
         </div>
-      </main>
-      <div className={styles.tipContainer}>
-        <Link href="/sensor" passHref>
-          <div className={styles.tipBtn}>
-            <AccessPoint /> Sensor
-          </div>
-        </Link>
-        <Link href="/crops" passHref>
-          <div className={styles.tipBtn}>
-            <Growth /> Crops
-          </div>
-        </Link>
-        <Link href="/live" passHref>
-          <div className={styles.tipBtn}>
-            <LivePhoto /> Live
-          </div>
-        </Link>
-        <Link href="/login" passHref>
-          <div className={styles.tipBtn}>
-            <Login /> Login
-          </div>
-        </Link>
       </div>
-    </div>
+      <ChatboT />
+    </>
   );
 };
 
