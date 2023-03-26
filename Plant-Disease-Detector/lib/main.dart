@@ -9,10 +9,8 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'l10n/l10n.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'provider/locale_provider.dart';
-// import 'package:current_context/current_context.dart';
 
 Future main() async {
-  // S.preheat();
   WidgetsFlutterBinding.ensureInitialized();
   await Hive.initFlutter();
   Hive.registerAdapter(DiseaseAdapter());
