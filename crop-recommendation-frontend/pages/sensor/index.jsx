@@ -7,7 +7,7 @@ import styles from "../../styles/Sensors.module.css";
 import { onValue, ref } from "firebase/database";
 import { CategoryScale } from "chart.js";
 import Chart from "chart.js/auto";
-import { BarChart } from "../../components/BarChart";
+import { BarChart, LineChart } from "../../components/LineChart";
 
 Chart.register(CategoryScale);
 export default function Sensor() {
@@ -25,7 +25,7 @@ export default function Sensor() {
     //     setSensorData(res.data.data);
     //   });
 
-    const query = ref(db, "sensor");
+    const query = ref(db, "AgiIoT");
     return onValue(query, (snapshot) => {
       const raw_data = snapshot.val();
       let allService = raw_data.map((item, indx) => indx);
@@ -71,15 +71,41 @@ export default function Sensor() {
             },
           ],
         });
+
+        raw_data.forEach((item, index) => {
+          axios
+            .post(`${process.env.api}/recommend`, {
+              N: item.N,
+              P: item.P,
+              K: item.K,
+              temperature: item.temperature,
+              humidity: item.humidity,
+              ph: item.ph,
+              rainfall: 1000,
+            })
+            .then((res) => {
+              console.log(raw_data[index]);
+              if (res.data.error) {
+                console.log("Error : ", res.data.error);
+                return;
+              }
+              const recommended = res.data.recommended[0];
+              console.log(recommended);
+              raw_data[index]["recommendation"] = recommended;
+            });
+        });
+
+        console.log(raw_data);
         setSensorData(raw_data);
       }
-      console.log(
-        raw_data.map((item, index) => {
-          return raw_data[index]["K"];
-        })
-      );
+      // console.log(
+      //   raw_data.map((item, index) => {
+      //     return raw_data[index]["K"];
+      //   })
+      // );
     });
   }
+
   const [chartData, setChartData] = React.useState({
     labels: [],
     datasets: [],
@@ -87,7 +113,7 @@ export default function Sensor() {
   return (
     <>
       {console.log(sensorData)}
-      <BarChart chartData={chartData} />
+      <LineChart chartData={chartData} />
       <div className={styles.container}>
         <Head>
           <title>Sensor Data</title>
@@ -114,6 +140,7 @@ export default function Sensor() {
                   <th>Light</th>
                   <th>Rainfall</th>
                   <th>Wind</th>
+                  <th>Recommendation</th>
                   <th>Date & Time</th>
                 </tr>
               </thead>
@@ -132,6 +159,7 @@ export default function Sensor() {
                     <td>{sensor.light ?? "-"}</td>
                     <td>{sensor.rain ?? "-"}</td>
                     <td>{sensor.wind_speed ? `${sensor.wind_speed}` : "-"}</td>
+                    <td>{sensor.recommendation}</td>
                     <td>
                       {sensor.createdAt
                         ? new Date(sensor.createdAt).toLocaleString()
